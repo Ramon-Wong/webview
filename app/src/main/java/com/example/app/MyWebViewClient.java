@@ -22,4 +22,5 @@ class MyWebViewClient extends WebViewClient {
         view.getContext().startActivity(intent);
         return true;
     }
+ 
 }

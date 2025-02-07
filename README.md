@@ -32,8 +32,8 @@ But with some different changes
 	>		mWebView.setWebContentsDebuggingEnabled(true);
 	>	};
 
-*	Minor changes
-	>	removed WebView.loadUrl("file:///android_asset/your_wasm_file.wasm");
+*	TODO
+	>	removed mWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 	>	and replace with 
 	>	WebView.loadUrl("file:///android_asset/your_wasm_file.wasm");
 	*	Use WebView.loadUrl to load specific files.

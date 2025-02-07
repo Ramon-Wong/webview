@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WASM Test</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>WASM Test</title>
 </head>
 <body>
-    <h1>WebAssembly Loaded</h1>
-    <p id="output"></p>
-    
-    <script src="hello.js"></script>
-    <script>
-        Module.onRuntimeInitialized = function() {
+	<h1>WebAssembly Loaded</h1>
+	<p id="output"></p>
+	
+	<script src="hello.js"></script>
+	<script>
+        // Now you can use the Emscripten Module object
+        Module['onRuntimeInitialized'] = function() { // IMPORTANT
             const add = Module.cwrap("add", "number", ["number", "number"]);
-            document.getElementById("output").innerText = "2 + 3 = " + add(2, 3);
+            const result = add(2, 3);
+            document.getElementById("output").innerText = "2 + 3 = " + result;
         };
+		
     </script>
 </body>
 </html>
