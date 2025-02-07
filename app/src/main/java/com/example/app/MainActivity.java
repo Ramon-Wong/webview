@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
         mWebView.setWebViewClient(new MyWebViewClient());
         mWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 
-        WebView.loadUrl("file:///android_asset/your_wasm_file.wasm");
+        // WebView.loadUrl("file:///android_asset/your_wasm_file.wasm");
 
         getWindow().getDecorView().setSystemUiVisibility(
             View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mWebView.setWebContentsDebuggingEnabled(true);
-        } 
+        }; 
 
         // For portrait:
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

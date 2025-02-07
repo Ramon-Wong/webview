@@ -1,33 +1,43 @@
-This is a template project for Android Studio that allows you to create an android webview application in minutes. You can use it to create a simple app for your website or as a starting point for your HTML5 based android app.
+This is a template project for Android Studio, forked from https://github.com/slymax/webview
 
-### Getting started
+But with some different changes
+*	Hardware support
+	>	android:hardwareAccelerated="true"
+	>	android:screenOrientation="unspecified"
+	*	in mainactivity.java
+		>	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);			// set to portrait mode
+		>	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);			// set to landscape mode
 
-[Download](https://github.com/slymax/webview/archive/master.zip) or clone this repository and import it into Android Studio.
+*	Zoom disable 
+	>	in mainactivity.java
+	* 	webSettings.setBuiltInZoomControls(false);										// Disable zoom controls
+	* 	webSettings.setDisplayZoomControls(false);										// Hide zoom buttons
+	* 	webSettings.setSupportZoom(false);												// Disable pinch-to-zoom
 
-### Using a remote source
+*	Remote debugging using chrome
+	* 	mWebView.setWebContentsDebuggingEnabled(true);
 
-If you want to create an app that shows the content of a remote website
+*	Remove android decor/status bar	
+	>	import android.view.View;														// remove android decor	
+	>	in mainactivity.java
+	>	getWindow().getDecorView().setSystemUiVisibility(
+	>		View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+	>		View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+	>	);
 
-1. uncomment line **24** in `MainActivity.java` and replace `https://example.com` with your url
+*	Enable chrome remote debugging
+	>	import android.os.Build;														
+	>	in mainactivity.java
+	>	if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+	>		mWebView.setWebContentsDebuggingEnabled(true);
+	>	};
 
-	```java
-	mWebView.loadUrl("https://example.com");
-	```
+*	Minor changes
+	>	removed WebView.loadUrl("file:///android_asset/your_wasm_file.wasm");
+	>	and replace with 
+	>	WebView.loadUrl("file:///android_asset/your_wasm_file.wasm");
+	*	Use WebView.loadUrl to load specific files.
 
-2. open the `MyWebViewClient.java` file and replace `example.com` on line **15** with your hostname
-
-	```java
-	hostname = "example.com";
-	```
-
-### Using a local source
-
-If you want to create a local HTML5 android app
-
-1. uncomment line **27** in `MainActivity.java`
-
-	```java
-	mWebView.loadUrl("file:///android_asset/index.html");
-	```
-
-2. put all your files (including your `index.html`) in the `assets` directory
+*	Webview Caching	
+	>	webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+	
