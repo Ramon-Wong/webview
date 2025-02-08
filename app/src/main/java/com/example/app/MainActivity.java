@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.content.pm.ActivityInfo;
 import android.view.View;
 
+
 public class MainActivity extends Activity {
 
 	private WebView mWebView;
@@ -19,6 +20,7 @@ public class MainActivity extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
 		mWebView = findViewById(R.id.activity_main_webview);
 		WebSettings webSettings = mWebView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
@@ -30,6 +32,7 @@ public class MainActivity extends Activity {
 
 		mWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 		mWebView.setWebContentsDebuggingEnabled(true);          // remote debugging
+		mWebView.addJavascriptInterface(new JSBridge(), "AndroidBridge");
 
 		mWebView.setWebViewClient(new MyWebViewClient());
 		mWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);

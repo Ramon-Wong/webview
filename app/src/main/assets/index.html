@@ -9,15 +9,10 @@
 	<h1>WebAssembly Loaded</h1>
 	<p id="output"></p>
 	
-	<script src="hello.js"></script>
 	<script>
-        // Now you can use the Emscripten Module object
-        Module['onRuntimeInitialized'] = function() { // IMPORTANT
-            const add = Module.cwrap("add", "number", ["number", "number"]);
-            const result = add(2, 3);
-            document.getElementById("output").innerText = "2 + 3 = " + result;
-        };
-		
+		let message = AndroidBridge.sayHello();
+				
+		document.getElementById("output").innerText = message;
     </script>
 </body>
 </html>
